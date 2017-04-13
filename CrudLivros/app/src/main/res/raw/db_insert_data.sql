@@ -1,0 +1,1 @@
+INSERT INTO livro (nome, autor) VALUES ('Java', 'Guilherme Silveira');

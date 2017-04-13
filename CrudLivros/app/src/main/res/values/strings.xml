@@ -12,4 +12,8 @@
     <string name="senha">Senha</string>
     <string name="manterConectado">Lembrar-me</string>
     <string name="logar">Logar</string>
+    <string name="github">GitHub</string>
+    <string name="sair">Sair</string>
+    <string name="sobre">Sobre</string>
+    <string name="dev">Helena Strada</string>
 </resources>

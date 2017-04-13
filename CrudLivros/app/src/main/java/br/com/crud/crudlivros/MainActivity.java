@@ -136,6 +136,11 @@ public class MainActivity extends AppCompatActivity
                 sair();
                 break;
 
+            case R.id.nav_sobre:
+                Intent intent = new Intent(MainActivity.this, SobreActivity.class);
+                startActivity(intent);
+                break;
+
             case R.id.nav_manage:
                 openChrome("https://github.com/hstrada/android-crud-livros");
                 break;

@@ -28,5 +28,5 @@ tools:context="br.com.crud.crudlivros.SplashScreenActivity">
     android:layout_alignParentRight="true"
     android:layout_alignParentEnd="true"
     android:textStyle="bold|italic"
-    android:textColor="#FFFFFF"/>
+    android:textColor="#000000"/>
 </RelativeLayout>

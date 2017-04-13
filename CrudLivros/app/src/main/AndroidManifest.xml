@@ -36,7 +36,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".LivroActivity" />
-        <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".SobreActivity"></activity>
     </application>
 
 </manifest>

@@ -32,7 +32,8 @@ public class DBOpenHelper extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase db) {
         // cria a estrutura do banco
-        lerEExecutarSQLScript(db, ctx, R.raw.db_create_tables);
+        lerEExecutarSQLScript(db, ctx, R.raw.db_create_table_livro);
+        lerEExecutarSQLScript(db, ctx, R.raw.db_create_table_usuario);
         // Insere os dados iniciais
         lerEExecutarSQLScript(db, ctx, R.raw.db_insert_data);
     }

@@ -1,0 +1,17 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:orientation="vertical">
+
+    <Spinner
+        android:id="@+id/spTraducao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/lang_array"
+        android:prompt="@string/traducao"
+        android:padding="10dp"
+        />
+
+</LinearLayout>

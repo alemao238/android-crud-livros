@@ -1,19 +1,26 @@
 <resources>
     <string name="app_name">CrudLivros</string>
 
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
+    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
 
     <string name="action_settings">Sair</string>
 
-    <string name="versao">1.0</string>
+    <string name="versao" translatable="false">1.0</string>
 
-    <string name="login">Login</string>
+    <string name="login" translatable="false">Login</string>
     <string name="senha">Senha</string>
     <string name="manterConectado">Lembrar-me</string>
-    <string name="logar">Logar</string>
-    <string name="github">GitHub</string>
+    <string name="logar" translatable="false">Login</string>
+    <string name="github" translatable="false">GitHub</string>
     <string name="sair">Sair</string>
     <string name="sobre">Sobre</string>
-    <string name="dev">Helena Strada</string>
+    <string name="dev" translatable="false">Helena Strada</string>
+    <string name="traducao">Traduzir</string>
+    <string name="titulo_dialog">Traduzindo</string>
+
+    <string-array name="lang_array">
+        <item>EN</item>
+        <item>PT</item>
+    </string-array>
 </resources>

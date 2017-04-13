@@ -1,14 +1,19 @@
 package br.com.crud.crudlivros;
 
 import android.content.ActivityNotFoundException;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -18,9 +23,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.util.List;
+import java.util.Locale;
 
 import br.com.crud.crudlivros.dao.LivroDAO;
 import br.com.crud.crudlivros.model.Livro;
@@ -28,7 +35,6 @@ import br.com.crud.crudlivros.view.adapter.LivroAdapter;
 
 import static br.com.crud.crudlivros.LoginActivity.KEY_APP_PREFERENCES;
 import static br.com.crud.crudlivros.LoginActivity.KEY_LOGIN;
-import static br.com.crud.crudlivros.R.id.tilLogin;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -132,6 +138,10 @@ public class MainActivity extends AppCompatActivity
 
         switch (id) {
 
+            case R.id.nav_traducao:
+                showChangeLangDialog();
+                return true;
+
             case R.id.nav_send:
                 sair();
                 break;
@@ -175,4 +185,54 @@ public class MainActivity extends AppCompatActivity
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
+
+
+    // https://bhavyanshu.me/tutorials/provide-multiple-language-support-in-your-android-app/08/20/2015
+    public void showChangeLangDialog() {
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = this.getLayoutInflater();
+        final View dialogView = inflater.inflate(R.layout.traducao_dialog, null);
+        dialogBuilder.setView(dialogView);
+
+        final Spinner spinner1 = (Spinner) dialogView.findViewById(R.id.spTraducao);
+
+        dialogBuilder.setTitle(getResources().getString(R.string.titulo_dialog));
+        // dialogBuilder.setMessage(getResources().getString(R.string.lang_dialog_message));
+        dialogBuilder.setPositiveButton("Traduzir", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                int langpos = spinner1.getSelectedItemPosition();
+                switch(langpos) {
+                    case 0: //English
+                        PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("LANG", "en").commit();
+                        setLangRecreate("en");
+                        return;
+                    case 1: // Portuguese
+                        PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("LANG", "pt").commit();
+                        setLangRecreate("pt");
+                        return;
+                    default: //By default set to english
+                        PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("LANG", "en").commit();
+                        setLangRecreate("en");
+                        return;
+                }
+            }
+        });
+        dialogBuilder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                //pass
+            }
+        });
+        AlertDialog b = dialogBuilder.create();
+        b.show();
+    }
+
+    public void setLangRecreate(String langval) {
+        Configuration config = getBaseContext().getResources().getConfiguration();
+        Locale locale = new Locale(langval);
+        Locale.setDefault(locale);
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+        recreate();
+    }
+
 }

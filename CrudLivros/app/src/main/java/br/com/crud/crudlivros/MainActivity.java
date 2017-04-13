@@ -2,6 +2,7 @@ package br.com.crud.crudlivros;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -24,6 +25,10 @@ import java.util.List;
 import br.com.crud.crudlivros.dao.LivroDAO;
 import br.com.crud.crudlivros.model.Livro;
 import br.com.crud.crudlivros.view.adapter.LivroAdapter;
+
+import static br.com.crud.crudlivros.LoginActivity.KEY_APP_PREFERENCES;
+import static br.com.crud.crudlivros.LoginActivity.KEY_LOGIN;
+import static br.com.crud.crudlivros.R.id.tilLogin;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -126,6 +131,10 @@ public class MainActivity extends AppCompatActivity
 
         switch (id) {
 
+            case R.id.action_settings:
+                sair();
+                break;
+
             case R.id.nav_manage:
                 openChrome("https://github.com/hstrada/android-crud-livros");
                 break;
@@ -147,5 +156,13 @@ public class MainActivity extends AppCompatActivity
             intent.setPackage(null);
             this.startActivity(intent);
         }
+    }
+
+    private void sair() {
+        SharedPreferences pref = getSharedPreferences(KEY_APP_PREFERENCES, MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putString(KEY_LOGIN, "");
+        editor.apply();
+        finish();
     }
 }

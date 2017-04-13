@@ -8,6 +8,9 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
 public class SplashScreenActivity extends AppCompatActivity {
 
     // tempo de duração que a splashscreen ficará visível na tela
@@ -39,7 +42,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
+                Intent intent = new Intent(SplashScreenActivity.this, LoginActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
                 SplashScreenActivity.this.finish();

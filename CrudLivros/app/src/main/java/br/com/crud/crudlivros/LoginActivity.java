@@ -45,7 +45,7 @@ public class LoginActivity extends AppCompatActivity {
             }
             iniciarApp();
         }else{
-            Toast.makeText(this, "Invalido", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Inválido", Toast.LENGTH_LONG).show();
         }
     }
 

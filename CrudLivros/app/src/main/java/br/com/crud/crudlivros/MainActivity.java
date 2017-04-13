@@ -131,7 +131,7 @@ public class MainActivity extends AppCompatActivity
 
         switch (id) {
 
-            case R.id.action_settings:
+            case R.id.nav_send:
                 sair();
                 break;
 
@@ -163,6 +163,10 @@ public class MainActivity extends AppCompatActivity
         SharedPreferences.Editor editor = pref.edit();
         editor.putString(KEY_LOGIN, "");
         editor.apply();
-        finish();
+        // finalizar a aplicação
+        // finish();
+        // redirecionar para a tela de login
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
     }
 }

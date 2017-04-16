@@ -45,19 +45,26 @@ public class UsuarioDAO {
         }
     }
 
-    public Usuario findUsuario(String login, String senha) {
+    public boolean findUsuario(String login, String senha) {
         SQLiteDatabase db = dbo.getWritableDatabase();
         String query = "SELECT id, login, senha FROM " + UsuarioDAO.TABELA_USUARIO + " WHERE login = ? AND senha = ?";
         Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(login), String.valueOf(senha)});
         cursor.moveToFirst();
 
-        // trocar para try/catch caso o usuário esteja incorreto
+        if(cursor.getCount() <= 0){
+            cursor.close();
+            //return false;
+            return false;
+        }
         Usuario usuario = new Usuario();
         usuario.setId(cursor.getLong(0));
         usuario.setLogin(cursor.getString(1));
         usuario.setSenha(cursor.getString(2));
         db.close();
-        return usuario;
+        cursor.close();
+        // return usuario;
+
+        return true;
 
     }
 

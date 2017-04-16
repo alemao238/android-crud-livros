@@ -152,7 +152,7 @@ public class MainActivity extends AppCompatActivity
                 break;
 
             case R.id.nav_manage:
-                openChrome("https://github.com/hstrada/android-crud-livros");
+                abrirNavegador("https://github.com/hstrada/android-crud-livros");
                 break;
 
         }
@@ -162,16 +162,10 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    private void openChrome(String url) {
-        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.setPackage("com.android.chrome");
-        try {
-            this.startActivity(intent);
-        } catch (ActivityNotFoundException ex) {
-            intent.setPackage(null);
-            this.startActivity(intent);
-        }
+    // http://stackoverflow.com/questions/29351183/open-url-with-an-browser
+    private void abrirNavegador (String url) {
+        Intent intent= new Intent(Intent.ACTION_VIEW,Uri.parse(url));
+        startActivity(intent);
     }
 
     private void sair() {

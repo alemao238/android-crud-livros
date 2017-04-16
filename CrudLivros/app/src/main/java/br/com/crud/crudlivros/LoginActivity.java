@@ -61,7 +61,7 @@ public class LoginActivity extends AppCompatActivity {
             }
             iniciarApp();
         } else {
-            Toast.makeText(this, "Inválido", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Usuário Inválido!", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -70,10 +70,8 @@ public class LoginActivity extends AppCompatActivity {
         String login = tilLogin.getEditText().getText().toString();
         String senha = tilSenha.getEditText().getText().toString();
 
-        Usuario usuario = usuarioDAO.findUsuario(login, senha);
-
         // if (login.equals(LOGIN_DEFAULT) && senha.equals(SENHA_DEFAULT)) {
-        if (usuario != null) {
+        if (usuarioDAO.findUsuario(login, senha) == true) {
             return true;
         } else
             return false;
